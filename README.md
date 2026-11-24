@@ -2,6 +2,10 @@
 
 UI, UX and website copy reviews.
 
+## Knowledge base
+
+- [15 UX laws](knowledge/ux-laws.md): one-line rules, what to look for, fix patterns and a review checklist.
+
 ## Reviews
 
 | Project | Status | Notes |
