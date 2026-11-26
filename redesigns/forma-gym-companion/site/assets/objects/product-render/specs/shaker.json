@@ -1,0 +1,27 @@
+{
+  "id": "shaker",
+  "name": "Shaker bottle",
+  "label": "A gym shaker bottle with a black flip-top lid",
+  "units": "m",
+  "angle": -30,
+  "camera": { "elev": 12 },
+  "turn": { "mode": "sway", "amp": 22, "period": 20 },
+  "materials": {
+    "body": { "kind": "paint", "color": "accent", "finish": "gloss" },
+    "lid": { "kind": "plastic", "color": "#141218", "finish": "satin" }
+  },
+  "colors": [
+    { "id": "volt", "name": "Volt", "accent": "#d4ff3a" },
+    { "id": "violet", "name": "Electric violet", "accent": "#6d3df5" }
+  ],
+  "supports": ["three-quarter", "front"],
+  "make": { "variants": ["three-quarter"], "grounds": ["dark"], "px": 900 },
+  "parts": [
+    { "name": "foot", "type": "cylinder", "at": [0, 0.006, 0], "axis": "y", "r": 0.04, "h": 0.012, "round": 0.004, "mat": "lid" },
+    { "name": "body", "type": "cylinder", "at": [0, 0.095, 0], "axis": "y", "r": 0.042, "h": 0.17, "round": 0.012, "seams": [0.1, 0.35, 0.6], "seamWidth": 0.0012, "seamDepth": 0.0006, "mat": "body" },
+    { "name": "collar", "type": "cylinder", "at": [0, 0.188, 0], "axis": "y", "r": 0.044, "h": 0.022, "round": 0.004, "mat": "lid" },
+    { "name": "lid", "type": "cylinder", "at": [0, 0.208, 0], "axis": "y", "r": 0.04, "h": 0.02, "round": 0.008, "mat": "lid" },
+    { "name": "spout", "type": "cylinder", "at": [0.018, 0.223, 0], "axis": "y", "r": 0.012, "h": 0.012, "round": 0.004, "mat": "lid" },
+    { "name": "loop", "type": "torus", "at": [-0.024, 0.232, 0], "axis": "z", "R": 0.016, "r": 0.004, "mat": "lid" }
+  ]
+}

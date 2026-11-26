@@ -68,6 +68,15 @@ The original files are untouched except `index.html` (two tags added, Cloudflare
 - **Structure.** Today is a grid: the session card with the dumbbell leads; mission ring, level and next meal sit beside it; three stat tiles below. Quests opens with a violet card: XP to the next level, coins and the trophy.
 - Same checks as before still pass: 0 text under 12px, 0 misused arrows, 0 ALL CAPS labels, 21 small tap targets on a phone.
 
+## v4: Exercises, Recipes and Food
+
+Research first (sources: [HubFit library layouts](https://blog.hubfit.com/blog/on-demand-workout-library-section-layouts), [Everfit filters](https://blog.everfit.io/?p=3226), [screensdesign on exercise substitution](https://screensdesign.com/articles/workout-app-exercise-substitution-ux/), [Tubik recipe card experiments](https://tubikstudio.com/blog/ui-experiments-options-for-recipe-cards-in-a-food-app/), [Gousto recipe card redesign](https://medium.com/gousto-engineering-techbrunch/how-gousto-made-it-easier-to-choose-recipes-by-redesigning-their-digital-recipe-cards-b374b47b6197)). What they agree on, and what was built:
+
+- **Exercise library:** search plus muscle and equipment filters, a grid of photo cards, no sideways scrolling on phones. Each card is now one button (photo, muscle tag, name, kit and level). The "View movement guide" button on every card is gone.
+- **Recipe cards:** big photo, then a clear vertical order. Each card shows the name and one line of numbers (kcal, protein, minutes) instead of four macro chips and a sentence. The whole card opens the recipe; a round lime "+" adds it to your menu.
+- **Food:** the water card has a 3D shaker bottle (`specs/shaker.json`, 6 parts), shown as a still. The title is now "Water".
+- **Less text:** visible text elements across the 8 measured phone screens went from 802 (original) to 577. Exercises alone: 118 to 68.
+
 ## Not done (suggestions for the owner)
 
 - **Feature count.** 14 sections for a beginner's gym app is a lot (Hick's law). Arcade, Mascots and the Rewards shop could live inside Quests.

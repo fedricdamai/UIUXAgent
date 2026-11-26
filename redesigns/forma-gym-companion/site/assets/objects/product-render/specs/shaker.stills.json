@@ -1,0 +1,45 @@
+{
+ "id": "shaker",
+ "made": "2026-11-26T10:14:05.414Z",
+ "px": 900,
+ "grounds": [
+  "dark"
+ ],
+ "colors": [
+  "volt",
+  "violet"
+ ],
+ "variants": {
+  "three-quarter": {
+   "view": "three-quarter",
+   "scene": null,
+   "off": false,
+   "grounds": [
+    "dark"
+   ],
+   "stills": {
+    "dark": {
+     "volt": {
+      "file": "stills/shaker-three-quarter-volt-dark.webp",
+      "half": "stills/shaker-three-quarter-volt-dark-half.webp",
+      "w": 332,
+      "h": 916
+     },
+     "violet": {
+      "file": "stills/shaker-three-quarter-violet-dark.webp",
+      "half": "stills/shaker-three-quarter-violet-dark-half.webp",
+      "w": 332,
+      "h": 916
+     }
+    }
+   },
+   "box": [
+    0.0181,
+    0.0066,
+    0.9578,
+    0.9902
+   ],
+   "px": 900
+  }
+ }
+}

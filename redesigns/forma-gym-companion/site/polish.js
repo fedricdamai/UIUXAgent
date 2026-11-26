@@ -55,8 +55,9 @@ function setDots(n, label = true) {
 }
 
 const VOLT_PALETTE = '{"bg":"#5b2ee0","surface":"#5b2ee0","ink":"#ffffff","accent":"#d4ff3a"}';
-function object3D(spec, label, extra = '') {
-  return `<div class="obj3d" data-product="assets/objects/product-render/specs/${spec}.json" data-product-place="card" data-product-color="volt" data-product-params='{"turn":1}' data-product-palette='${VOLT_PALETTE}' aria-label="${label}" role="img" ${extra}></div>`;
+const PAPER_PALETTE = '{"bg":"#16131d","surface":"#16131d","ink":"#f5f2ff","accent":"#d4ff3a"}';
+function object3D(spec, label, extra = '', palette = VOLT_PALETTE, turn = 1) {
+  return `<div class="obj3d" data-product="assets/objects/product-render/specs/${spec}.json" data-product-place="card" data-product-color="volt" data-product-params='{"turn":${turn}}' data-product-palette='${palette}' aria-label="${label}" role="img" ${extra}></div>`;
 }
 
 function sessionCard() {
@@ -122,6 +123,37 @@ function questsHero() {
     <span class="xp-track"><i style="width:${g.into / 2}%"></i></span><p class="ts-meta"><b>◈ ${coinBalance()}</b> coins to spend</p></div>${object3D('trophy', 'A volt-green trophy')}</section>`;
 }
 
+/* Exercises: the whole card opens the guide; photo, muscle, name, kit */
+const cap = t => String(t || '').charAt(0).toUpperCase() + String(t || '').slice(1);
+function exerciseCard(e) {
+  return `<button class="card exercise-card move-card" onclick="showExercise(${e.key})" aria-label="${esc(e.name)}, ${esc(e.equipmentLabel)}, ${esc(e.level)}">
+    <span class="image-wrap"><img loading="lazy" src="${e.images[0]}" alt=""><span class="pill">${esc(cap(e.primaryMuscles[0]))}</span></span>
+    <span class="info"><b class="mc-name">${esc(e.name)}</b><small>${esc(e.equipmentLabel)} · ${esc(cap(e.level))}</small></span></button>`;
+}
+
+/* Recipes: photo first, then name, then one line of numbers */
+function recipeCard(m) {
+  const t = mealTotals(m), f = foodFilters(), missing = missingFor(m);
+  const pantry = f.fridge !== 'off' ? `<span class="fc-pantry ${missing.length ? '' : 'is-ready'}">${missing.length ? `Missing ${missing.length}` : 'You have everything'}</span>` : '';
+  return `<article class="card meal-card food-card">
+    <button class="fc-open" onclick="showRecipe(${m.id})" aria-label="Open ${esc(m.name)}">
+      <span class="fc-img"><img loading="lazy" src="assets/${m.img}" alt="Illustration of a meal style, not this exact recipe"><span class="pill">${esc(m.tag)}</span></span>
+      <span class="info"><b class="fc-name">${esc(m.name)}</b><span class="fc-meta"><span><b>${n(t.calories)}</b> kcal</span><span><b>${n(t.protein)}</b> g protein</span><span><b>${m.time}</b> min</span></span>${pantry}</span>
+    </button>
+    <button class="fc-add" onclick="addToPlan(${m.id},1)" aria-label="Add ${esc(m.name)} to your menu">+</button></article>`;
+}
+
+/* Food: the water card gets the 3D shaker */
+function polishFood() {
+  const water = document.querySelector('#app .water');
+  const card = water?.closest('.card');
+  if (!card || card.classList.contains('water-card')) return;
+  card.classList.add('water-card');
+  const h = card.querySelector('h3');
+  if (h) h.textContent = 'Water';
+  card.insertAdjacentHTML('afterbegin', object3D('shaker', 'A volt-green shaker bottle', '', PAPER_PALETTE, 0));
+}
+
 /* Copy pass. Runs after every render and on anything added later (dialogs, toasts). */
 const ACRONYMS = /\b(xp|acsm|cdc|usda|bmr|tdee|rpe|rir|pr|ai|uk|us|id|kg|kcal)\b/g;
 const DECOR = /^[⚙✦♧]\s*/;
@@ -182,6 +214,7 @@ render = function () {
   originalRender();
   polishChrome();
   if (view === 'quests' && !document.querySelector('.quests-hero')) document.querySelector('#app .topline')?.insertAdjacentHTML('afterend', questsHero());
+  if (view === 'nutrition') polishFood();
   polishText(document.body);
   window.formaMount3D?.();
 };

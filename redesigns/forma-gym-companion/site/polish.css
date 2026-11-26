@@ -412,3 +412,65 @@ button.tile:active { transform: scale(.985); }
 .clean-workout-plan .row small { color: var(--muted); }
 .clean-workout-plan .movement-number { color: var(--muted); font-family: var(--display); font-weight: 700; }
 .clean-workout-plan .quiet-card h2 { font-size: 32px; }
+
+/* ---------- Exercises and Recipes: photo first ---------- */
+
+/* Filter bar: search on its own line, filters as pills; nothing truncates on a phone */
+.toolbar { display: grid !important; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; margin-bottom: 16px; }
+.toolbar input, .toolbar select { min-height: 48px; border-radius: 14px !important; background: var(--paper) !important; border: 1px solid var(--line-strong) !important; color: var(--ink) !important; padding: 0 16px; font-size: 15px; }
+.toolbar select { padding-right: 36px; }
+#app > p { color: var(--muted); font-size: 14px; margin: 0 0 12px; }
+@media (max-width: 760px) {
+  .toolbar { grid-template-columns: 1fr 1fr; }
+  .toolbar input { grid-column: 1 / -1; }
+  .toolbar select { width: 100%; min-width: 0; }
+}
+
+/* Exercise cards: the card is the button */
+#app .grid { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.move-card { display: flex !important; flex-direction: column; padding: 0 !important; overflow: hidden; text-align: left; cursor: pointer; width: 100%; color: var(--ink); transition: transform 150ms var(--ease), border-color 150ms var(--ease); }
+.move-card:hover { border-color: var(--line-strong) !important; transform: translateY(-2px); }
+.move-card:active { transform: scale(.985); }
+.move-card .image-wrap { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+.move-card .image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 300ms var(--ease); }
+.move-card:hover .image-wrap img { transform: scale(1.03); }
+.move-card .pill { position: absolute; left: 12px; top: 12px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+.move-card .info { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px 16px; }
+.mc-name, .fc-name { font-family: var(--display); font-stretch: 110%; font-variation-settings: "wdth" 110; font-weight: 700; font-size: 17px; line-height: 1.2; }
+.move-card small { color: var(--muted); font-size: 13px; }
+
+/* Recipe cards: photo, name, one line of numbers, a round add button */
+.food-card { position: relative; padding: 0 !important; overflow: hidden; display: block !important; }
+.fc-open { display: flex; flex-direction: column; width: 100%; padding: 0; border: 0; background: none; color: var(--ink); text-align: left; cursor: pointer; }
+.fc-img { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+.fc-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 300ms var(--ease); }
+.food-card:hover .fc-img img { transform: scale(1.03); }
+.food-card .pill { position: absolute; left: 12px; top: 12px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: rgba(9, 8, 12, .78) !important; color: var(--ink) !important; border: 0 !important; }
+.food-card .info { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px 18px; }
+.fc-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--muted); font-size: 13px; }
+.fc-meta b { color: var(--ink); font-family: var(--display); font-weight: 700; font-size: 15px; }
+.fc-pantry { font-size: 13px; color: var(--accent); }
+.fc-pantry.is-ready { color: var(--volt); }
+.fc-add { position: absolute; right: 12px; top: 12px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--volt); color: var(--volt-ink); font-size: 24px; font-weight: 600; line-height: 1; display: grid; place-items: center; cursor: pointer; transition: transform 120ms var(--ease), background-color 150ms var(--ease); }
+.fc-add:hover { background: #e2ff70; }
+.fc-add:active { transform: scale(.94); }
+
+/* Food: water card with the 3D shaker */
+.water-card { display: grid !important; grid-template-columns: 96px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 16px; align-items: center; }
+.water-card .obj3d { grid-row: 1 / span 2; grid-area: auto; width: 96px; height: 150px; aspect-ratio: auto; min-height: 0; margin: 0; }
+.water-card > p.muted { display: none !important; }
+.water-card h3 { margin: 0; align-self: end; }
+.water-card .water { align-self: start; display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; margin-top: 8px; }
+.water-card .water b { font-family: var(--display); font-stretch: 118%; font-variation-settings: "wdth" 118; font-weight: 800; font-size: 32px; }
+/* Less text on Food: the helper paragraph under "Something good to eat?" and the estimate notice */
+#app .card > h3 + p.muted { display: none; }
+.water-card { grid-template-columns: 72px minmax(0, 1fr); column-gap: 12px; }
+.water-card .obj3d { width: 72px; height: 124px; }
+.water-card .water b { font-size: 28px; white-space: nowrap; }
+@media (max-width: 760px) {
+  .toolbar select { font-size: 14px; padding: 0 28px 0 12px; }
+}
+.water-card .obj3d { grid-area: 1 / 1 / 3 / 2 !important; }
+.water-card h3 { grid-area: 1 / 2 / 2 / 3; }
+.water-card .water { grid-area: 2 / 2 / 3 / 3; }
+.btn.small { min-height: 44px !important; }
