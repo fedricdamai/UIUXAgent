@@ -9,6 +9,10 @@ UI, UX and website copy reviews.
 - [Toolkit](knowledge/toolkit.md): Claude skills, sites and GitHub libraries for better UI.
 - [Visual styles](knowledge/visual-styles.md): named aesthetics for art direction.
 
+## Skills
+
+Design skills from Emil Kowalski, Impeccable, Taste and Unslop live in [.claude/skills](.claude/skills/SOURCES.md). [CLAUDE.md](CLAUDE.md) says which to use when.
+
 ## Reviews
 
 | Project | Status | Notes |
