@@ -1,6 +1,7 @@
 # Forma Gym Companion: Redesign
 
 - **Original:** https://forma-gym-companion.greenant33.chatgpt.site
+- **Live preview (private):** https://claude.ai/artifact/BPXaGq6yDrk4177yJ2hjHE
 - **This copy:** `site/`. Open `site/index.html` through any static server (`python3 -m http.server -d site`).
 - **Date:** 26 November 2026
 - **Method:** the `unslop` skill's audit and nine passes, checked against [ux-laws.md](../../knowledge/ux-laws.md) and [anti-slop.md](../../knowledge/anti-slop.md).
