@@ -1,0 +1,217 @@
+/* Forma polish layer. Loads after style.css.
+   Direction: a patient, encouraging gym companion for beginners, set in a calm
+   home-gym corner at night. Warm neutral surfaces, Forma's lilac as the one accent,
+   set dots as the signature. */
+
+:root {
+  --bg: #161513;
+  --sidebar: #12110f;
+  --paper: #1c1a18;
+  --raised: #262421;
+  --line: rgba(239, 233, 222, .08);
+  --line-strong: rgba(239, 233, 222, .14);
+  --ink: #efe9de;
+  --ink-2: #c3bcb0;
+  --muted: #9a9387;
+  --accent: #c5b2d9;
+  --accent-ink: #1d1824;
+  --accent-soft: rgba(197, 178, 217, .14);
+  --lime: var(--accent);
+  --violet: var(--accent);
+  --soft: var(--raised);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+body {
+  background: var(--bg) !important;
+  background-image: none !important;
+  color: var(--ink);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Text roles */
+.muted, .quiet-page-head p, .topline p { color: var(--ink-2) !important; }
+small { color: var(--muted); }
+.kicker, .game-label, .nav-group-label, .eyebrow {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: var(--muted) !important;
+}
+h1, .quiet-page-head h1, .topline h1 { font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+h2, h3 { font-weight: 600; color: var(--ink); }
+
+/* Surfaces: one step up from the page, a hairline, no glow */
+.quiet-card, .card, .start-banner, .fold-panel, .next-tile, .daily-focus, .today-session, .notice {
+  background-color: var(--paper) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: none !important;
+  border-radius: 16px;
+}
+
+/* Buttons: lilac primary with dark text, quiet secondary */
+.btn {
+  background: var(--accent) !important;
+  color: var(--accent-ink) !important;
+  border: 0 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25) !important;
+  border-radius: 10px !important;
+  min-height: 44px;
+  font-weight: 600;
+  transition: background-color 150ms var(--ease), transform 120ms var(--ease);
+}
+.btn:hover { background: #d3c4e2 !important; }
+.btn:active { transform: scale(.98); }
+.btn.secondary, .btn.ghost {
+  background: var(--raised) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line-strong) !important;
+  box-shadow: none !important;
+}
+.btn.secondary:hover { background: #2e2b28 !important; }
+.text-button { color: var(--ink-2); min-height: 44px; }
+.text-button:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--accent) !important; outline-offset: 3px; }
+
+/* Icons: one set, one size, the text colour */
+.ic { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Sidebar: dense, aligned, one active style */
+.sidebar { background: var(--sidebar) !important; border-right: 1px solid var(--line) !important; }
+.sidebar #nav { gap: 24px !important; }
+.sidebar .nav-group { display: flex; flex-direction: column; gap: 2px; }
+.sidebar .nav-group-label { display: block; margin: 0 0 8px 12px; }
+.sidebar #nav a, .sidebar .nav-account {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px !important;
+  padding: 0 12px !important;
+  border-radius: 8px;
+  font-size: 15px !important;
+  font-weight: 500;
+  color: var(--ink-2) !important;
+  background: none;
+  border: 0;
+  text-align: left;
+  width: 100%;
+  transition: background-color 150ms var(--ease), color 150ms var(--ease);
+}
+.sidebar #nav a:hover, .sidebar .nav-account:hover { background: var(--raised); color: var(--ink) !important; }
+.sidebar #nav a.active { background: var(--raised) !important; color: var(--ink) !important; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06); }
+.sidebar #nav a.active .ic { color: var(--accent); }
+.sidebar #nav a.active:after { display: none !important; }
+.sidebar #nav a > span:not(.ic) { width: auto !important; font-size: inherit !important; }
+
+/* Header: no second navigation, quiet actions */
+.area-nav { display: none !important; }
+.app-header { background: rgba(22, 21, 19, .92) !important; border-bottom: 1px solid var(--line) !important; }
+.header-left #breadcrumb { font-size: 15px !important; font-weight: 500; color: var(--ink); }
+.header-actions .profile-header { display: none !important; }
+.app-header .icon, .account-button, .wallet-mini { min-height: 40px; min-width: 40px; border-radius: 10px; }
+
+/* Bottom navigation on phones: same names, same icons */
+.bottom-nav { background: rgba(18, 17, 15, .96) !important; border-top: 1px solid var(--line) !important; }
+.bottom-nav a, .bottom-nav button { gap: 4px; color: var(--muted) !important; font-size: 12px !important; font-weight: 500; }
+.bottom-nav a.active { color: var(--ink) !important; background: none !important; box-shadow: none !important; }
+.bottom-nav a.active .ic { color: var(--accent); }
+.bottom-nav .ic { width: 20px; height: 20px; }
+@media (max-width: 760px) {
+  .nav-toggle { display: none !important; }
+  .app-header .icon, .account-button, .wallet-mini { min-height: 44px; min-width: 44px; }
+}
+
+/* Page head */
+.quiet-page-head { margin-bottom: 24px !important; align-items: center !important; }
+.quiet-page-head h1 { font-size: 36px; margin: 0 0 4px !important; }
+.quiet-page-head p { font-size: 16px !important; margin: 0; }
+.mini-profile { color: var(--ink-2) !important; }
+
+/* Start banner and tour line */
+.start-banner { margin-bottom: 24px !important; }
+.start-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 20px; }
+.tour-line { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin: 0 0 24px; padding: 4px 0; color: var(--ink-2); font-size: 15px; }
+.tour-line span { flex: 1 1 260px; }
+.tour-line .quiet { color: var(--muted); }
+
+/* Today's session: the moment of the screen */
+.today-session { padding: 24px; margin-bottom: 24px; }
+.ts-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.ts-head h2 { font-size: 28px; margin: 4px 0; letter-spacing: -.01em; }
+.ts-meta { margin: 0; color: var(--ink-2); font-size: 15px; }
+.ts-head .btn { width: auto; flex: none; padding: 0 24px; }
+.ts-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.ts-list li {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto 64px;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  padding: 8px 12px 8px 8px;
+  border-radius: 12px;
+  background: var(--raised);
+}
+.ts-list img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; background: #2e2b28; }
+.ts-name { font-weight: 500; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ts-dose { color: var(--ink-2); font-size: 14px; white-space: nowrap; }
+.ts-foot { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 12px; }
+
+/* Signature: set dots, one per working set */
+.set-dots { display: inline-flex; gap: 6px; justify-content: flex-end; align-items: center; }
+.set-dots i { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--accent); }
+.clean-workout-plan .row small .set-dots { margin-left: 10px; vertical-align: middle; }
+
+/* Meal tile and fold */
+.meal-tile { display: flex !important; align-items: center; gap: 16px; width: 100%; padding: 20px 24px !important; margin: 0 0 24px; text-align: left; color: var(--ink); }
+.meal-tile .ic { width: 22px; height: 22px; color: var(--accent); }
+.meal-tile small { display: block; }
+.meal-tile b { font-size: 17px; }
+.meal-tile p { margin: 2px 0 0; color: var(--ink-2); font-size: 14px; }
+
+/* Chips and pills become quiet text */
+.pill, .reward-chip { background: none !important; border: 1px solid var(--line-strong) !important; box-shadow: none !important; color: var(--ink-2) !important; }
+
+/* Decorative glyphs that were standing in for icons */
+.plan-suggestion > span:first-child { display: none; }
+
+/* Motion: no floating loops; interactions stay */
+.hero-panda, .panda-companion, .mascot-pfp.hero-pfp, .mascot-pfp.companion-art { animation: none; }
+.panda-companion.panda-hop, .mascot-pfp.companion-art.panda-hop { animation: companion-hop .65s ease-in-out; }
+
+/* Phones: stack the session card, bigger tap targets */
+@media (max-width: 760px) {
+  .quiet-page-head h1 { font-size: 30px !important; }
+  .today-session { padding: 20px 16px; }
+  .ts-head { flex-direction: column; align-items: stretch; }
+  .ts-head .btn { width: 100%; }
+  .ts-list li { grid-template-columns: 44px minmax(0, 1fr) auto; gap: 12px; }
+  .ts-list li .set-dots { display: none; }
+  .ts-list img { width: 44px; height: 44px; }
+  main button, main a { min-height: 44px; }
+}
+
+/* Fixes after the first render */
+.bottom-nav a, .bottom-nav button { display: flex !important; flex-direction: column; align-items: center; justify-content: center; }
+.bottom-nav a > span, .bottom-nav button > span,
+.sidebar #nav a > span, .sidebar .nav-account > span { font-size: inherit !important; width: auto !important; line-height: 1.2; }
+.bottom-nav a > span, .bottom-nav button > span { font-size: 12px !important; }
+.reward-chip { border: 0 !important; padding: 0 !important; color: var(--muted) !important; }
+.exercise-card .pill { background: rgba(18, 17, 15, .82) !important; color: var(--ink) !important; border: 0 !important; }
+.topline .kicker, .quiet-page-head .kicker { display: none !important; }
+@media (max-width: 760px) {
+  .quiet-page-head h1 { font-size: 26px !important; }
+  .mini-profile > span { display: none; }
+  .ts-list li { grid-template-areas: "img name dose" "img dots dose"; grid-template-columns: 44px minmax(0, 1fr) auto; row-gap: 4px; }
+  .ts-list li img { grid-area: img; }
+  .ts-list li .ts-name { grid-area: name; }
+  .ts-list li .ts-dose { grid-area: dose; }
+  .ts-list li .set-dots { grid-area: dots; display: inline-flex; justify-content: flex-start; }
+}
+@media (max-width: 760px) {
+  .sidebar #nav a, .sidebar .nav-account { min-height: 48px !important; font-size: 16px !important; }
+  .sidebar > .logo { min-height: 44px; }
+  footer a, footer .text-button { display: inline-flex; align-items: center; min-height: 44px; }
+}
+.circle-play { min-width: 44px !important; min-height: 44px !important; }

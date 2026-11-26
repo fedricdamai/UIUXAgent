@@ -13,6 +13,12 @@ UI, UX and website copy reviews.
 
 Design skills from Emil Kowalski, Impeccable, Taste and Unslop live in [.claude/skills](.claude/skills/SOURCES.md). [CLAUDE.md](CLAUDE.md) says which to use when.
 
+## Redesigns
+
+| Project | Status | Notes |
+| --- | --- | --- |
+| [Forma Gym Companion](redesigns/forma-gym-companion/README.md) | First pass done | Working copy with one navigation, a session-first Today screen and readable type |
+
 ## Reviews
 
 | Project | Status | Notes |
