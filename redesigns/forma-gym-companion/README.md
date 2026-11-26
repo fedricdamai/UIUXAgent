@@ -24,7 +24,7 @@ Same 8 screens (Today, Train, Food, Progress, Quests, Recipes, Exercises, My pla
 | Names for the same place | Workout / Train, Food diary / Fuel, Quests / Adventure | Train, Food, Quests everywhere |
 | Taps from Today to starting a workout | 2, after scrolling past the mission | 1, in the first screen |
 
-Contrast of the bold palette: body text 17:1+, secondary 10.2:1, muted 5.8:1 at worst, white on the violet button 5.8:1, dark text on the lime button 16.8:1, lime on the violet session card 6.2:1. All pass WCAG AA (4.5:1).
+Contrast of the bold palette: body text 16.6:1, secondary 10.2:1, muted 5.8:1 at worst, white on the violet button 5.8:1, dark text on the lime button 16.8:1, lime on the violet session card 6.2:1. All pass WCAG AA (4.5:1).
 
 ![Today, desktop](shots/today-desktop-before-after.jpg)
 ![Phone: Today and Train, before and after](shots/mobile-before-after.jpg)
