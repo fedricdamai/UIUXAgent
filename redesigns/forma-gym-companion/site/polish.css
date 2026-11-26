@@ -1,22 +1,27 @@
 /* Forma polish layer. Loads after style.css.
-   Direction: a patient, encouraging gym companion for beginners, set in a calm
-   home-gym corner at night. Warm neutral surfaces, Forma's lilac as the one accent,
-   set dots as the signature. */
+   Direction: an encouraging gym companion for beginners, with power. Colours come from
+   Pip the panda: electric violet (his hoodie) for everything you press, volt lime (his
+   fur) for progress you earn. Near-black violet-tinted surfaces so both colours hit hard.
+   Set dots are the signature. */
 
 :root {
-  --bg: #161513;
-  --sidebar: #12110f;
-  --paper: #1c1a18;
-  --raised: #262421;
-  --line: rgba(239, 233, 222, .08);
-  --line-strong: rgba(239, 233, 222, .14);
-  --ink: #efe9de;
-  --ink-2: #c3bcb0;
-  --muted: #9a9387;
-  --accent: #c5b2d9;
-  --accent-ink: #1d1824;
-  --accent-soft: rgba(197, 178, 217, .14);
-  --lime: var(--accent);
+  --bg: #0c0a10;
+  --sidebar: #09080c;
+  --paper: #16131d;
+  --raised: #211c2b;
+  --line: rgba(245, 242, 255, .08);
+  --line-strong: rgba(245, 242, 255, .16);
+  --ink: #f5f2ff;
+  --ink-2: #c4bed3;
+  --muted: #9c95ad;
+  --accent: #b49bff;
+  --violet-fill: #6d3df5;
+  --violet-block: #5b2ee0;
+  --volt: #d4ff3a;
+  --volt-ink: #14081f;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(180, 155, 255, .16);
+  --lime: var(--volt);
   --violet: var(--accent);
   --soft: var(--raised);
   --ease: cubic-bezier(.22, 1, .36, 1);
@@ -215,3 +220,61 @@ h2, h3 { font-weight: 600; color: var(--ink); }
   footer a, footer .text-button { display: inline-flex; align-items: center; min-height: 44px; }
 }
 .circle-play { min-width: 44px !important; min-height: 44px !important; }
+
+
+/* ---------- Bold palette ---------- */
+
+/* Headlines with weight */
+h1, .quiet-page-head h1, .topline h1 { font-family: Manrope, 'DM Sans', sans-serif; font-weight: 800 !important; letter-spacing: -.03em !important; }
+.quiet-page-head h1 { font-size: 44px; line-height: 1.05; }
+h2, h3 { font-family: Manrope, 'DM Sans', sans-serif; font-weight: 700; letter-spacing: -.015em; }
+
+/* Primary action: solid electric violet, white text */
+.btn { background: var(--violet-fill) !important; color: #fff !important; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22) !important; font-weight: 700; }
+.btn:hover { background: #7c4dff !important; }
+.btn.secondary, .btn.ghost { background: var(--raised) !important; color: var(--ink) !important; }
+.btn.secondary:hover { background: #2b2438 !important; }
+.text-button { color: var(--accent); }
+.text-button:hover { color: var(--ink); }
+
+/* Navigation: the active place is a solid violet block */
+.sidebar #nav a.active { background: var(--violet-fill) !important; color: #fff !important; box-shadow: none; }
+.sidebar #nav a.active .ic { color: #fff; }
+.bottom-nav a.active { color: #fff !important; }
+.bottom-nav a.active .ic { color: var(--volt); }
+.logo .mark { background: var(--violet-fill) !important; color: #fff !important; }
+.dot { color: var(--volt) !important; }
+
+/* Today's session: a violet block, the loudest thing on the screen */
+.today-session { background: var(--violet-block) !important; border: 0 !important; }
+.today-session .kicker { color: var(--volt) !important; font-weight: 700 !important; }
+.today-session h2 { font-size: 36px; color: #fff; }
+.today-session .ts-meta { color: #e6dcff; }
+.today-session .ts-list li { background: rgba(9, 4, 30, .28); }
+.today-session .ts-dose { color: #e6dcff; }
+.today-session .btn:not(.secondary) { background: var(--volt) !important; color: var(--volt-ink) !important; box-shadow: none !important; font-size: 16px !important; min-height: 52px; padding: 0 28px; }
+.today-session .btn:not(.secondary):hover { background: #e2ff70 !important; }
+.today-session .btn.secondary { background: rgba(9, 4, 30, .35) !important; color: #fff !important; border-color: rgba(255, 255, 255, .25) !important; }
+.today-session .text-button { color: #fff; }
+.today-session .set-dots i { border-color: var(--volt); }
+
+/* Progress you earn is lime */
+.set-dots i { border-color: var(--volt); }
+.xp-track { background: var(--raised) !important; border: 0 !important; }
+.xp-track i { background: var(--volt) !important; }
+progress i { background: var(--volt) !important; }
+.mission-ring:before { background: var(--paper) !important; }
+.step-done .step-number { background: var(--volt) !important; border-color: var(--volt) !important; color: var(--volt-ink) !important; }
+.step-complete { color: var(--volt) !important; }
+.mini-profile small, .sidebar-level small { color: var(--volt) !important; }
+
+/* Start banner for first-run users gets the violet treatment too */
+.start-banner h2 { color: #fff; }
+
+@media (max-width: 760px) {
+  .quiet-page-head h1 { font-size: 32px !important; }
+  .today-session h2 { font-size: 30px; }
+}
+.app-header { background: rgba(12, 10, 16, .92) !important; }
+.app-header .icon, .account-button { background: var(--raised) !important; border: 1px solid var(--line-strong) !important; color: var(--ink) !important; }
+.sidebar, .bottom-nav { background: var(--sidebar) !important; }

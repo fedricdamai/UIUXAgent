@@ -9,8 +9,8 @@ What it changes, and nothing else:
 1. Text smaller than 12px becomes 12px (font-size and the font shorthand).
 2. Weights 800 and 900 become 600.
 3. Wide tracking on small labels (letter-spacing >= 0.5px or 0.05em) becomes 0.
-4. Purple-tinted greys become warm neutrals at the same lightness.
-   Saturated light purples become the one lilac accent (#c5b2d9).
+4. Purple-tinted greys become violet-tinted darks (dark ones 15% deeper).
+   Saturated light purples become the electric violet accent (#b49bff).
 It prints a count of each change so the diff is easy to check.
 """
 
@@ -22,7 +22,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "tools" / "style.original.css"
 OUT = ROOT / "site" / "style.css"
 
-ACCENT = (0xC5, 0xB2, 0xD9)  # Forma's lilac, kept as the brand accent
+ACCENT = (0xB4, 0x9B, 0xFF)  # electric violet, from Pip's hoodie
+NEUTRAL_HUE, NEUTRAL_SAT = 262, 0.12  # violet-tinted darks
 counts = {"size": 0, "weight": 0, "tracking": 0, "neutral": 0, "accent": 0}
 
 
@@ -36,7 +37,7 @@ def retone(r, g, b):
         counts["accent"] += 1
         return ACCENT
     counts["neutral"] += 1
-    nr, ng, nb = colorsys.hls_to_rgb(35 / 360, l, min(s, 0.06))
+    nr, ng, nb = colorsys.hls_to_rgb(NEUTRAL_HUE / 360, l * 0.85 if l < 0.3 else l, min(s, NEUTRAL_SAT))
     return tuple(round(v * 255) for v in (nr, ng, nb))
 
 

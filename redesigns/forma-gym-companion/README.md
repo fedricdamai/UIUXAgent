@@ -24,7 +24,7 @@ Same 8 screens (Today, Train, Food, Progress, Quests, Recipes, Exercises, My pla
 | Names for the same place | Workout / Train, Food diary / Fuel, Quests / Adventure | Train, Food, Quests everywhere |
 | Taps from Today to starting a workout | 2, after scrolling past the mission | 1, in the first screen |
 
-Contrast of the new colours on cards: body text 14.4:1, secondary 9.2:1, muted 5.7:1, button text 8.9:1. All pass WCAG AA (4.5:1).
+Contrast of the bold palette: body text 17:1+, secondary 10.2:1, muted 5.8:1 at worst, white on the violet button 5.8:1, dark text on the lime button 16.8:1, lime on the violet session card 6.2:1. All pass WCAG AA (4.5:1).
 
 ![Today, desktop](shots/today-desktop-before-after.jpg)
 ![Phone: Today and Train, before and after](shots/mobile-before-after.jpg)
@@ -35,12 +35,13 @@ Contrast of the new colours on cards: body text 14.4:1, secondary 9.2:1, muted 5
 - **Character:** patient, encouraging, a little playful.
 - **World:** a home-gym corner at night. Rubber mats, a lamp, plants. It's the app's own illustration.
 - **Moment:** today's session. Real exercise photos, sets and reps, one Start button.
-- **Signature:** set dots. One small lilac ring per working set, wherever sets are listed (Today and Train).
+- **Colour (v2, bold):** taken from Pip the panda. Electric violet (#6d3df5, his hoodie) for everything you press and the active place in the nav. Volt lime (#d4ff3a, his fur, and the app's own earlier accent) for progress you earn: set dots, the mission ring, XP, completed steps, and the one Start button. Near-black violet-tinted surfaces (#0c0a10) so both hit hard. Headlines in Manrope 800.
+- **Signature:** set dots. One small lime ring per working set, wherever sets are listed (Today and Train).
 
 ## What changed, by pass
 
 1. **Spacing.** One 4px rhythm in the new parts. Sidebar rows 40px with 2px between them (48px in the phone drawer). Section label "More" sits 8px above its items.
-2. **Colour.** The purple-tinted greys became warm neutrals at the same lightness (344 values). Lilac stays as the one accent, used for the primary button, the active nav icon and set dots (133 values). The radial colour wash and film grain behind the page are gone.
+2. **Colour.** The purple-tinted greys became violet-tinted near-blacks (344 values) and the light purples became one electric violet (133 values). Today's session is a solid violet block with a lime Start button, the loudest thing on the screen. The radial colour wash and film grain behind the page are gone.
 3. **Icons.** Unicode glyphs (◫ ⌁ ◉ ✦ ▦) became one line-icon set at 18px, 1.5 stroke, in the text colour.
 4. **Copy.** ALL CAPS labels became sentence case. "↗" arrows removed from in-app buttons and kept only on real external links. Single-sentence headings lost their trailing period. Today's title is the date, not "Hey, Sam." The greeting moved into the subtitle with the day type ("Training day, Sam. Your session is ready.").
 5. **Type.** Minimum 12px everywhere (221 sizes raised). Weights 800/900 became 600 (42). Wide tracking on small labels removed (25).
