@@ -278,3 +278,137 @@ progress i { background: var(--volt) !important; }
 .app-header { background: rgba(12, 10, 16, .92) !important; }
 .app-header .icon, .account-button { background: var(--raised) !important; border: 1px solid var(--line-strong) !important; color: var(--ink) !important; }
 .sidebar, .bottom-nav { background: var(--sidebar) !important; }
+
+/* ---------- Premium pass: type, structure, less text, 3D ---------- */
+
+/* Type: Archivo, stretched wide, for anything that should hit; Onest for everything you read */
+:root { --display: 'Archivo', 'Manrope', sans-serif; --text: 'Onest', 'DM Sans', system-ui, sans-serif; }
+body, button, input, select, textarea { font-family: var(--text) !important; }
+h1, h2, h3, .quiet-page-head h1, .topline h1, .ts-meta b, .stat-tile b, .mm-ring span, .lt-xp b {
+  font-family: var(--display) !important;
+  font-stretch: 118%;
+  font-variation-settings: "wdth" 118;
+  font-weight: 800 !important;
+  letter-spacing: -.02em !important;
+}
+h1, .topline h1 { font-size: clamp(30px, 4vw, 48px) !important; line-height: 1 !important; text-transform: none; }
+h2 { font-size: 24px; line-height: 1.1; }
+h3 { font-size: 18px; line-height: 1.2; }
+
+/* Less text: page subtitles, date chips and helper paragraphs go; the headline carries the page */
+.topline p.muted, .topline .date, .quiet-page-head p, .plan-suggestion, .clean-workout-plan .section-head p.muted { display: none !important; }
+.topline { margin-bottom: 28px !important; align-items: center !important; }
+
+/* Shared tile */
+.tile { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 20px; color: var(--ink); text-align: left; }
+button.tile { cursor: pointer; transition: background-color 150ms var(--ease), transform 120ms var(--ease); }
+button.tile:hover { background: var(--raised); }
+button.tile:active { transform: scale(.985); }
+.tile-label, .ts-label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); }
+.ts-label { color: var(--volt); }
+
+/* Today grid */
+.today-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 24px; }
+.today-head h1 { margin: 0; }
+.today-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr); gap: 16px; align-items: start; }
+.tg-main, .tg-side { display: grid; gap: 16px; min-width: 0; }
+
+/* Session card: copy left, 3D dumbbell right, exercise strip along the bottom */
+.today-session { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); grid-template-areas: "copy obj" "strip strip"; gap: 8px 16px; padding: 28px !important; border-radius: 24px !important; margin: 0 !important; overflow: hidden; position: relative; }
+.ts-copy { grid-area: copy; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; align-self: center; }
+.today-session h2 { font-size: clamp(32px, 3.4vw, 52px) !important; line-height: .95; margin: 0; color: #fff; }
+.ts-meta { display: flex; gap: 14px; margin: 0; color: #e6dcff; font-size: 14px; }
+.ts-meta b { font-size: 20px; color: #fff; margin-right: 4px; letter-spacing: 0 !important; }
+.today-session .btn { margin-top: 8px; width: auto !important; }
+.obj3d { grid-area: obj; position: relative; width: 100%; aspect-ratio: 16 / 10; min-height: 180px; }
+.obj3d img, .obj3d canvas { max-width: 100%; }
+.ts-strip { grid-area: strip; list-style: none; margin: 8px 0 0; padding: 0; display: flex; gap: 12px; flex-wrap: wrap; }
+.ts-strip li { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ts-thumb { width: 64px; height: 64px; padding: 0; border: 2px solid rgba(255, 255, 255, .25); border-radius: 18px; overflow: hidden; background: #2e1a8a; cursor: pointer; transition: border-color 150ms var(--ease), transform 120ms var(--ease); }
+.ts-thumb:hover { border-color: var(--volt); }
+.ts-thumb:active { transform: scale(.96); }
+.ts-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ts-strip .set-dots i { width: 7px; height: 7px; }
+
+/* Side tiles */
+.mission-mini { display: flex; align-items: center; gap: 16px; }
+.mm-ring { --done: 0%; width: 76px; height: 76px; flex: none; border-radius: 50%; background: conic-gradient(var(--volt) var(--done), var(--raised) 0); display: grid; place-items: center; position: relative; }
+.mm-ring:before { content: ''; position: absolute; inset: 7px; border-radius: 50%; background: var(--paper); }
+.mm-ring span { position: relative; font-size: 22px; }
+.mm-ring small { font-size: 13px; color: var(--muted); font-family: var(--text); font-weight: 500; }
+.mm-copy { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.mm-copy h3 { margin: 0 0 2px; }
+.mm-copy .text-button { min-height: 32px; padding: 0; text-align: left; color: var(--accent); font-weight: 600; }
+.level-tile { display: flex; align-items: center; gap: 16px; width: 100%; }
+.level-tile .mascot-pfp, .level-tile img { width: 56px !important; height: 56px !important; flex: none; }
+.lt-copy { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.lt-xp { color: var(--muted); font-size: 14px; }
+.lt-xp b { color: var(--ink); font-size: 22px; letter-spacing: 0 !important; }
+.level-tile .xp-track, .quests-hero .xp-track { display: block; height: 8px; border-radius: 4px; overflow: hidden; margin: 4px 0 0; }
+.meal-tile { display: flex !important; align-items: center; gap: 14px; width: 100%; margin: 0 !important; padding: 20px !important; }
+.meal-tile .ic { width: 24px; height: 24px; color: var(--volt); }
+.meal-tile b { display: block; font-size: 17px; }
+.stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.stat-tile { display: flex; flex-direction: column; gap: 6px; }
+.stat-tile b { font-size: 36px; line-height: 1; letter-spacing: 0 !important; }
+.stat-tile b small { font-size: 18px; color: var(--muted); font-family: var(--text); font-weight: 500; }
+.stat-tile span { font-size: 14px; color: var(--muted); }
+
+/* Quests hero with the 3D trophy */
+.quests-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 16px; background: var(--violet-block); border-radius: 24px; padding: 28px; margin: 0 0 24px; overflow: hidden; }
+.qh-copy { display: flex; flex-direction: column; gap: 12px; }
+.quests-hero h2 { font-size: clamp(28px, 3vw, 44px) !important; line-height: 1; color: #fff; margin: 0; }
+.quests-hero .xp-track { background: rgba(9, 4, 30, .35) !important; max-width: 360px; }
+.quests-hero .ts-meta { color: #e6dcff; }
+.quests-hero .obj3d { aspect-ratio: 4 / 3; max-height: 300px; }
+
+/* Rounder, calmer cards everywhere */
+.quiet-card, .card, .fold-panel, .daily-focus, .notice { border-radius: 20px !important; }
+.btn { border-radius: 14px !important; min-height: 48px; padding-inline: 24px; }
+
+@media (max-width: 1100px) {
+  .today-grid { grid-template-columns: 1fr; }
+  .tg-side { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+}
+@media (max-width: 760px) {
+  .today-session { grid-template-columns: 1fr; grid-template-areas: "obj" "copy" "strip"; padding: 20px !important; }
+  .obj3d { aspect-ratio: 16 / 9; min-height: 0; margin: -8px 0 -4px; }
+  .today-session .btn { width: 100% !important; }
+  .ts-strip { gap: 8px; justify-content: space-between; }
+  .ts-thumb { width: 56px; height: 56px; border-radius: 16px; }
+  .stat-row { gap: 8px; }
+  .stat-tile { padding: 14px; }
+  .stat-tile b { font-size: 28px; }
+  .stat-tile span { font-size: 12px; }
+  .quests-hero { grid-template-columns: 1fr; padding: 20px; }
+  .quests-hero .obj3d { order: -1; aspect-ratio: 16 / 10; }
+}
+/* The 3D object's pause control (moving content must be pausable) */
+.obj3d .loop-pause { position: absolute; right: 4px; bottom: 4px; width: 32px; height: 32px; min-height: 0 !important; padding: 0; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .25); background: rgba(9, 4, 30, .35); color: #fff; display: grid; place-items: center; cursor: pointer; opacity: .7; transition: opacity 150ms var(--ease); }
+.obj3d .loop-pause:hover, .obj3d .loop-pause:focus-visible { opacity: 1; }
+.obj3d .loop-pause svg { width: 14px; height: 14px; fill: currentColor; }
+.ts-meta { align-items: baseline; }
+.quests-hero .obj3d { grid-area: auto; width: 100%; height: 260px; aspect-ratio: auto; max-height: none; }
+.quests-hero { padding-block: 24px; }
+@media (max-width: 760px) { .quests-hero .obj3d { height: 200px; } }
+/* Header: no duplicate page name; the wordmark on phones */
+.header-left #breadcrumb { display: none !important; }
+.topline .player-chip { display: none !important; }
+@media (max-width: 760px) {
+  .header-left::before { content: 'forma.'; font-family: var(--display); font-stretch: 118%; font-variation-settings: "wdth" 118; font-weight: 800; font-size: 22px; letter-spacing: -.02em; color: var(--ink); }
+}
+
+/* Progress: numbers, not explanations */
+.stats .stat > small { display: none !important; }
+.stats .stat { border-radius: 20px !important; padding: 20px !important; background: var(--paper) !important; border: 1px solid var(--line) !important; }
+.stats .stat-value { font-family: var(--display) !important; font-stretch: 118%; font-variation-settings: "wdth" 118; font-weight: 800 !important; font-size: 40px !important; line-height: 1; letter-spacing: 0 !important; margin-top: 8px; }
+.stats .stat-value span { font-family: var(--text); font-size: 16px; font-weight: 500; color: var(--muted); }
+.stats .stat-label { font-size: 13px !important; color: var(--muted) !important; font-weight: 600; }
+
+/* Train: roomier rows, bigger photos, quieter meta */
+.clean-workout-plan .row { padding: 12px 0 !important; gap: 16px; }
+.clean-workout-plan .thumb { width: 64px !important; height: 64px !important; border-radius: 16px !important; object-fit: cover; }
+.clean-workout-plan .row b { font-family: var(--display); font-stretch: 110%; font-variation-settings: "wdth" 110; font-weight: 700; font-size: 17px !important; }
+.clean-workout-plan .row small { color: var(--muted); }
+.clean-workout-plan .movement-number { color: var(--muted); font-family: var(--display); font-weight: 700; }
+.clean-workout-plan .quiet-card h2 { font-size: 32px; }

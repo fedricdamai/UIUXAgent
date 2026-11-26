@@ -1,0 +1,45 @@
+{
+ "id": "dumbbell",
+ "made": "2026-11-26T09:39:42.213Z",
+ "px": 900,
+ "grounds": [
+  "dark"
+ ],
+ "colors": [
+  "volt",
+  "violet"
+ ],
+ "variants": {
+  "three-quarter": {
+   "view": "three-quarter",
+   "scene": null,
+   "off": false,
+   "grounds": [
+    "dark"
+   ],
+   "stills": {
+    "dark": {
+     "volt": {
+      "file": "stills/dumbbell-three-quarter-volt-dark.webp",
+      "half": "stills/dumbbell-three-quarter-volt-dark-half.webp",
+      "w": 928,
+      "h": 552
+     },
+     "violet": {
+      "file": "stills/dumbbell-three-quarter-violet-dark.webp",
+      "half": "stills/dumbbell-three-quarter-violet-dark-half.webp",
+      "w": 928,
+      "h": 552
+     }
+    }
+   },
+   "box": [
+    0.0065,
+    0.0109,
+    0.9429,
+    0.9094
+   ],
+   "px": 900
+  }
+ }
+}

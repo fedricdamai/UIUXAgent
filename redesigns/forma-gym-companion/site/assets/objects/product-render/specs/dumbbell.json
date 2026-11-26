@@ -1,0 +1,29 @@
+{
+  "id": "dumbbell",
+  "name": "Dumbbell",
+  "label": "A round dumbbell with coated heads and a chrome handle",
+  "units": "m",
+  "angle": -28,
+  "camera": { "elev": 16 },
+  "turn": { "mode": "sway", "amp": 24, "period": 18 },
+  "materials": {
+    "head": { "kind": "paint", "color": "accent", "finish": "gloss" },
+    "grip": { "kind": "steel" }
+  },
+  "colors": [
+    { "id": "volt", "name": "Volt", "accent": "#d4ff3a" },
+    { "id": "violet", "name": "Electric violet", "accent": "#6d3df5" }
+  ],
+  "supports": ["three-quarter", "side"],
+  "make": { "variants": ["three-quarter"], "grounds": ["dark"], "px": 900 },
+  "parts": [
+    { "name": "head left", "type": "cylinder", "at": [-0.1025, 0.07, 0], "axis": "x", "r": 0.07, "h": 0.075, "round": 0.018, "mat": "head" },
+    { "name": "head right", "type": "cylinder", "at": [0.1025, 0.07, 0], "axis": "x", "r": 0.07, "h": 0.075, "round": 0.018, "mat": "head" },
+    { "name": "cap left", "type": "cylinder", "at": [-0.141, 0.07, 0], "axis": "x", "r": 0.03, "h": 0.006, "round": 0.002, "mat": "chrome" },
+    { "name": "cap right", "type": "cylinder", "at": [0.141, 0.07, 0], "axis": "x", "r": 0.03, "h": 0.006, "round": 0.002, "mat": "chrome" },
+    { "name": "collar left", "type": "cylinder", "at": [-0.058, 0.07, 0], "axis": "x", "r": 0.024, "h": 0.014, "round": 0.003, "mat": "chrome" },
+    { "name": "collar right", "type": "cylinder", "at": [0.058, 0.07, 0], "axis": "x", "r": 0.024, "h": 0.014, "round": 0.003, "mat": "chrome" },
+    { "name": "handle", "type": "tube", "from": [-0.066, 0.07, 0], "to": [0.066, 0.07, 0], "r": 0.016, "mat": "chrome" },
+    { "name": "grip", "type": "tube", "from": [-0.042, 0.07, 0], "to": [0.042, 0.07, 0], "r": 0.0166, "seams": [-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8], "mat": "grip" }
+  ]
+}

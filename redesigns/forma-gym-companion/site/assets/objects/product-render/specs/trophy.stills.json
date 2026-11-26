@@ -1,0 +1,45 @@
+{
+ "id": "trophy",
+ "made": "2026-11-26T09:39:46.479Z",
+ "px": 900,
+ "grounds": [
+  "dark"
+ ],
+ "colors": [
+  "volt",
+  "violet"
+ ],
+ "variants": {
+  "three-quarter": {
+   "view": "three-quarter",
+   "scene": null,
+   "off": false,
+   "grounds": [
+    "dark"
+   ],
+   "stills": {
+    "dark": {
+     "volt": {
+      "file": "stills/trophy-three-quarter-volt-dark.webp",
+      "half": "stills/trophy-three-quarter-volt-dark-half.webp",
+      "w": 664,
+      "h": 938
+     },
+     "violet": {
+      "file": "stills/trophy-three-quarter-violet-dark.webp",
+      "half": "stills/trophy-three-quarter-violet-dark-half.webp",
+      "w": 664,
+      "h": 938
+     }
+    }
+   },
+   "box": [
+    0.009,
+    0.0064,
+    0.9413,
+    0.9723
+   ],
+   "px": 900
+  }
+ }
+}

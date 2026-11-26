@@ -49,9 +49,14 @@ function renderAreaNavigation() {
     `<button aria-label="Open all sections" onclick="toggleSidebar()">${icon('more')}<span>More</span></button>`;
 }
 
-/* Today: the session first, then the day's mission, then everything else. */
+/* Today: a grid. The session (with its 3D dumbbell) leads; mission, level and the week sit beside it. */
 function setDots(n, label = true) {
   return `<span class="set-dots" ${label ? `aria-label="${n} working sets"` : 'aria-hidden="true"'}>${'<i></i>'.repeat(Math.max(0, n))}</span>`;
+}
+
+const VOLT_PALETTE = '{"bg":"#5b2ee0","surface":"#5b2ee0","ink":"#ffffff","accent":"#d4ff3a"}';
+function object3D(spec, label, extra = '') {
+  return `<div class="obj3d" data-product="assets/objects/product-render/specs/${spec}.json" data-product-place="card" data-product-color="volt" data-product-params='{"turn":1}' data-product-palette='${VOLT_PALETTE}' aria-label="${label}" role="img" ${extra}></div>`;
 }
 
 function sessionCard() {
@@ -60,31 +65,61 @@ function sessionCard() {
   const label = active ? 'In progress' : rest ? 'Rest day · next session' : 'Today’s session';
   const primary = active
     ? `<button class="btn" onclick="go('workout')">Resume workout</button>`
-    : `<button class="btn ${rest || !setupDone ? 'secondary' : ''}" ${p.length ? '' : 'disabled'} onclick="startSession()">${rest ? 'Train anyway' : state.sessions.length ? 'Start workout' : 'Start my first workout'}</button>`;
-  const rows = p.map(x => {
+    : `<button class="btn ${rest || !setupDone ? 'secondary' : ''}" ${p.length ? '' : 'disabled'} onclick="startSession()">${rest ? 'Train anyway' : 'Start workout'}</button>`;
+  const strip = p.map(x => {
     const e = exercises[x.key];
-    return `<li><img src="${e.images[0]}" alt="" loading="lazy"><span class="ts-name">${esc(e.name)}</span><span class="ts-dose">${x.sets} × ${x.reps}</span>${setDots(x.sets)}</li>`;
+    return `<li><button class="ts-thumb" onclick="showExercise(${x.key})" aria-label="${esc(e.name)}, ${x.sets} × ${x.reps}"><img src="${e.images[0]}" alt="" loading="lazy"></button>${setDots(x.sets, false)}</li>`;
   }).join('');
   return `<section class="today-session" aria-labelledby="todaySessionTitle">
-    <div class="ts-head"><div><span class="kicker">${label}</span><h2 id="todaySessionTitle">${esc(active ? active.type : sessionType())}</h2>
-    <p class="ts-meta">${p.length} movements · ${sets} working sets · about ${state.profile.duration} min</p></div>${primary}</div>
-    ${p.length ? `<ol class="ts-list">${rows}</ol>` : `<p class="muted">Add equipment in My plan to prepare a session.</p>`}
-    ${active ? '' : `<div class="ts-foot"><button class="text-button" onclick="chooseTodayFocus()">Change focus</button><button class="text-button" onclick="shuffleWorkout()">Shuffle movements</button></div>`}
+    <div class="ts-copy"><span class="ts-label">${label}</span><h2 id="todaySessionTitle">${esc(active ? active.type : sessionType())}</h2>
+    <p class="ts-meta"><b>${p.length}</b> moves <b>${sets}</b> sets <b>${state.profile.duration}</b> min</p>${primary}</div>
+    ${object3D('dumbbell', 'A volt-green dumbbell', 'id="todayDumbbell"')}
+    ${p.length ? `<ol class="ts-strip">${strip}</ol>` : ''}
   </section>`;
 }
 
+function missionMini() {
+  const box = document.createElement('div');
+  box.innerHTML = dailyMissionCard();
+  const title = box.querySelector('h2')?.textContent.trim().replace(/\.$/, '') || 'Today’s mission';
+  const count = box.querySelector('.mission-ring span')?.textContent.trim() || '0/3';
+  const [done, total] = count.split('/').map(Number);
+  const next = [...box.querySelectorAll('.mission-step-list li')].find(li => !li.classList.contains('step-done'));
+  const nextTitle = next?.querySelector('b')?.textContent.trim();
+  const action = next?.querySelector('button')?.getAttribute('onclick') || "go('quests')";
+  return `<section class="tile mission-mini"><div class="mm-ring" style="--done:${total ? done / total * 100 : 0}%"><span>${done}<small>/${total}</small></span></div>
+    <div class="mm-copy"><span class="tile-label">Mission</span><h3>${title}</h3>${nextTitle ? `<button class="text-button" onclick="${action.replace(/"/g, '&quot;')}">Next: ${nextTitle}</button>` : '<span class="tile-label">Complete</span>'}</div></section>`;
+}
+
+function levelTile() {
+  const g = gameStats();
+  return `<button class="tile level-tile" onclick="go('mascots')">${mascotPortrait(currentMascot(), 'tiny')}
+    <span class="lt-copy"><span class="tile-label">Level ${g.level}</span><span class="lt-xp"><b>${g.into}</b> / 200 XP</span><span class="xp-track"><i style="width:${g.into / 2}%"></i></span></span></button>`;
+}
+
+function weekTiles() {
+  const week = state.sessions.filter(s => s.date >= weekStart()).length;
+  const meals = (state.foods[today()] || []).length;
+  const quests = dailyQuests().filter(q => q.claimed).length;
+  const tile = (n, of, label, route) => `<button class="tile stat-tile" onclick="go('${route}')"><b>${n}${of ? `<small>/${of}</small>` : ''}</b><span>${label}</span></button>`;
+  return `<div class="stat-row">${tile(week, state.profile.days, 'Sessions this week', 'progress')}${tile(meals, 0, 'Meals logged today', 'nutrition')}${tile(quests, 3, 'Quests collected', 'quests')}</div>`;
+}
+
 function dashboard() {
-  const g = gameStats(), setupDone = !!state.onboarding?.complete, rest = isRecoveryMission();
-  const name = state.profile.name ? ', ' + esc(state.profile.name) : '';
+  const setupDone = !!state.onboarding?.complete;
   const date = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
-  const head = `<div class="quiet-page-head"><div><h1>${date}</h1><p class="muted">${rest ? `Rest day${name}. Recovery is part of the plan.` : `Training day${name}. Your session is ready.`}</p></div>
-    <button class="mini-profile" onclick="go('mascots')">${mascotPortrait(currentMascot(), 'tiny')}<span>Level ${g.level}<small>${g.into} / 200 XP</small></span></button></div>`;
-  const setup = setupDone ? '' : `<section class="start-banner"><div><span class="kicker">Start here</span><h2>Let’s make your first plan</h2><p>A few small choices. Skip anything you don’t know.</p><div class="start-actions"><button class="btn" onclick="openSetupFlow()">Personalize my plan</button><button class="text-button" onclick="state.introSeen=true;state.onboarding={...state.onboarding,complete:true,dismissed:true};state.profile.equipment=[...basicEquipment];save();render()">Use the basic plan</button></div></div></section>`;
-  const tour = setupDone && !state.introSeen ? `<div class="tour-line"><span>New to Forma? A one-minute tour shows where everything is.</span><button class="text-button" onclick="showAppTour()">Show me around</button><button class="text-button quiet" onclick="state.introSeen=true;save();render()">Dismiss</button></div>` : '';
-  const session = sessionCard(), mission = `<div class="daily-single">${dailyMissionCard()}</div>`;
-  const meal = `<button class="next-tile meal-tile" onclick="showMealPicker()">${icon('food')}<div><small>Your next meal</small><b>Let Forma pick</b><p>A quick suggestion, or a full day</p></div></button>`;
-  const more = `<details class="fold-panel daily-more"><summary><span>This week, quests and more</span><span>Open</span></summary><div class="fold-body"><div class="quiet-stats"><button onclick="go('progress')"><b>${state.sessions.filter(s => s.date >= weekStart()).length}<small> / ${state.profile.days}</small></b><span>Sessions this week</span></button><button onclick="go('nutrition')"><b>${(state.foods[today()] || []).length}</b><span>Meals today</span></button><button onclick="go('quests')"><b>${dailyQuests().filter(q => q.claimed).length}<small> / 3</small></b><span>Quests collected</span></button></div>${dailyQuests().map(compactQuest).join('')}</div></details>`;
-  return head + setup + tour + (rest ? mission + session : session + mission) + meal + more;
+  const head = `<div class="today-head"><h1>${date}</h1></div>`;
+  const setup = setupDone ? '' : `<section class="start-banner"><div><h2>Let’s make your first plan</h2><div class="start-actions"><button class="btn" onclick="openSetupFlow()">Personalize my plan</button><button class="text-button" onclick="state.introSeen=true;state.onboarding={...state.onboarding,complete:true,dismissed:true};state.profile.equipment=[...basicEquipment];save();render()">Use the basic plan</button></div></div></section>`;
+  const tour = setupDone && !state.introSeen ? `<div class="tour-line"><button class="text-button" onclick="showAppTour()">Take the 1-minute tour</button><button class="text-button quiet" onclick="state.introSeen=true;save();render()">Dismiss</button></div>` : '';
+  const meal = `<button class="tile meal-tile" onclick="showMealPicker()">${icon('food')}<span><span class="tile-label">Next meal</span><b>Let Forma pick</b></span></button>`;
+  return head + setup + tour + `<div class="today-grid"><div class="tg-main">${sessionCard()}${weekTiles()}</div><div class="tg-side">${missionMini()}${levelTile()}${meal}</div></div>`;
+}
+
+/* Quests: the reward gets a 3D trophy */
+function questsHero() {
+  const g = gameStats();
+  return `<section class="quests-hero"><div class="qh-copy"><span class="ts-label">Level ${g.level}</span><h2>${200 - g.into} XP to level ${g.level + 1}</h2>
+    <span class="xp-track"><i style="width:${g.into / 2}%"></i></span><p class="ts-meta"><b>◈ ${coinBalance()}</b> coins to spend</p></div>${object3D('trophy', 'A volt-green trophy')}</section>`;
 }
 
 /* Copy pass. Runs after every render and on anything added later (dialogs, toasts). */
@@ -137,6 +172,8 @@ function polishText(root) {
 function polishChrome() {
   const crumb = $('#breadcrumb');
   if (crumb) crumb.textContent = PAGE_NAMES[view] || 'Forma';
+  const title = document.querySelector('#app .topline h1');
+  if (title && view !== 'today' && PAGE_NAMES[view]) title.textContent = PAGE_NAMES[view];
   document.title = `${PAGE_NAMES[view] || 'Today'} · Forma`;
 }
 
@@ -144,7 +181,9 @@ const originalRender = render;
 render = function () {
   originalRender();
   polishChrome();
+  if (view === 'quests' && !document.querySelector('.quests-hero')) document.querySelector('#app .topline')?.insertAdjacentHTML('afterend', questsHero());
   polishText(document.body);
+  window.formaMount3D?.();
 };
 
 let polishQueued = false;

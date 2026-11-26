@@ -60,6 +60,14 @@ The original files are untouched except `index.html` (two tags added, Cloudflare
 
 `firebase-account.js` was left out on purpose, so this copy never connects to the real app's account backend. Sign-in shows its "not connected" state. Everything else saves to the browser, as in the original.
 
+## v3: premium pass (3D, type, less text)
+
+- **3D objects.** A dumbbell on Today and a trophy on Quests, both modelled in code with the Taste skill's `product-render` builder (`site/assets/objects/product-render/specs/*.json`) and rendered in real materials: gloss volt paint, chrome, knurled steel. On desktop they sway slowly and can be paused. On phones and with reduced motion they show a pre-rendered still, so no WebGL runs. Stills were made with the skill's `make-posters.mjs`.
+- **Type.** Archivo stretched to 118% width at weight 800 for headlines and numbers; Onest for everything you read. Both from the Taste type library, loaded from Google Fonts.
+- **Less text.** Page titles are the page name ("Quests", not "A clear path to your next win"). Subtitles, date chips, helper paragraphs and stat explanations are gone. The session shows "5 moves 10 sets 45 min" instead of a sentence, and its exercises as a photo strip with set dots.
+- **Structure.** Today is a grid: the session card with the dumbbell leads; mission ring, level and next meal sit beside it; three stat tiles below. Quests opens with a violet card: XP to the next level, coins and the trophy.
+- Same checks as before still pass: 0 text under 12px, 0 misused arrows, 0 ALL CAPS labels, 21 small tap targets on a phone.
+
 ## Not done (suggestions for the owner)
 
 - **Feature count.** 14 sections for a beginner's gym app is a lot (Hick's law). Arcade, Mascots and the Rewards shop could live inside Quests.

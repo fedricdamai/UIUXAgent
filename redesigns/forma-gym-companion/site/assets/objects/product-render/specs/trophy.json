@@ -1,0 +1,28 @@
+{
+  "id": "trophy",
+  "name": "Trophy",
+  "label": "A trophy cup on a black plinth",
+  "units": "m",
+  "angle": -24,
+  "camera": { "elev": 10 },
+  "turn": { "mode": "sway", "amp": 20, "period": 20 },
+  "materials": {
+    "cup": { "kind": "paint", "color": "accent", "finish": "gloss" }
+  },
+  "colors": [
+    { "id": "volt", "name": "Volt", "accent": "#d4ff3a" },
+    { "id": "violet", "name": "Electric violet", "accent": "#6d3df5" }
+  ],
+  "supports": ["three-quarter", "front"],
+  "make": { "variants": ["three-quarter"], "grounds": ["dark"], "px": 900 },
+  "parts": [
+    { "name": "plinth", "type": "box", "at": [0, 0.035, 0], "size": [0.17, 0.07, 0.17], "round": 0.01, "mat": "black" },
+    { "name": "plinth cap", "type": "cylinder", "at": [0, 0.08, 0], "axis": "y", "r": 0.055, "h": 0.02, "round": 0.004, "mat": "chrome" },
+    { "name": "stem", "type": "tube", "from": [0, 0.09, 0], "to": [0, 0.27, 0], "r": 0.013, "r2": 0.02, "mat": "chrome" },
+    { "name": "knot", "type": "sphere", "at": [0, 0.17, 0], "r": 0.026, "mat": "cup" },
+    { "name": "cup", "type": "shade", "from": [0, 0.26, 0], "to": [0, 0.47, 0], "r1": 0.03, "r2": 0.115, "t": 0.006, "bulge": 0.55, "mat": "cup", "innerMat": "cup" },
+    { "name": "lip", "type": "torus", "at": [0, 0.47, 0], "axis": "y", "R": 0.115, "r": 0.006, "mat": "chrome" },
+    { "name": "handle left", "type": "path", "points": [[-0.1, 0.44, 0], [-0.165, 0.43, 0], [-0.17, 0.37, 0], [-0.075, 0.33, 0]], "r": 0.009, "smooth": true, "mat": "cup" },
+    { "name": "handle right", "type": "path", "points": [[0.1, 0.44, 0], [0.165, 0.43, 0], [0.17, 0.37, 0], [0.075, 0.33, 0]], "r": 0.009, "smooth": true, "mat": "cup" }
+  ]
+}
